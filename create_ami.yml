@@ -1,0 +1,24 @@
+---
+- hosts: localhost
+  connection: local
+  gather_facts: false
+
+  tasks:
+
+    - name: Creating ami image
+      ec2_ami:
+         aws_access_key: AKIAJB36NNZABOR7XEVQ
+         aws_secret_key: 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
+         region: us-east-2
+         name: mymachine
+         state: present
+         architecture: x86_64
+         virtualization_type: hvm
+         root_device_name: /dev/vda
+         device_mapping:
+            - device_name: /dev/vda
+              size: 8
+              
+         
+
+

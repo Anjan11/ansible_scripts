@@ -1,0 +1,16 @@
+---
+- hosts: localhost
+  connection: local
+  tasks:
+  
+  - name: Deleting vm "{{ item }}" 
+    ec2:
+     state: absent
+     instance_ids: "{{ item }}"
+     region: us-east-2
+    with_items:
+      - i-0ffc74c853f4aa7e9
+      - i-0d5deae78bbe8401d
+      - i-0a820c753c193feb6
+      - i-0a24f81dd2fab0b8f
+      - i-0386a67a04fff6787

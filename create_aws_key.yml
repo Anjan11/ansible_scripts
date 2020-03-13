@@ -1,0 +1,15 @@
+---
+- hosts: localhost
+  connection: local
+  tasks:
+
+  - name: Create EC2 key
+    ec2_key: 
+       name: "mykey"
+       region: us-east-2
+    register: ec2_key
+
+  - name: Saving private key
+    copy: content="{{ ec2_key.key.private_key }}" dest="./mykey.pem" mode=0600
+    when: ec2_key.changed
+
