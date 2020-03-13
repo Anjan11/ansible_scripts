@@ -12,7 +12,7 @@
        region: us-east-2
        group: default
        vpc_subnet_id: subnet-c6f6d9bc
-       count: 1
+       count: 2
        wait: yes
        assign_public_ip: yes
     register: vm
