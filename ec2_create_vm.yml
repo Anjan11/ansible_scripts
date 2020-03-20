@@ -7,12 +7,12 @@
   - name: Creating vm 
     ec2:
        instance_type: a1.medium
-       key_name: mykey
+       key_name: key
        image: ami-0959e8feedaf156bf
        region: us-east-2
        group: default
        vpc_subnet_id: subnet-c6f6d9bc
-       count: 2
+       count: 1
        wait: yes
        assign_public_ip: yes
     register: vm
