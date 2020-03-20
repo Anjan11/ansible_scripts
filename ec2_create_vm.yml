@@ -1,46 +1,19 @@
 ---
 - hosts: localhost
   connection: local
-  gather_facts: false
+  gather_facts: yes
   tasks:
-  
-  - name: Creating vm 
+
+  - name: Creating vm
     ec2:
-       instance_type: a1.medium
+#       instance_type: a1.medium
+       instance_type: t2.micro
        key_name: key
-       image: ami-0959e8feedaf156bf
+       image: ami-0fc20dd1da406780b
        region: us-east-2
        group: default
-       vpc_subnet_id: subnet-c6f6d9bc
-       count: 2
+       vpc_subnet_id: subnet-a0a052cb
+       count: 1
        wait: yes
        assign_public_ip: yes
     register: vm
-
-  - debug: 
-       var: vm
-
-  - name: Adding IP to dynamic inventory
-    add_host:
-       hostname: "{{ item.public_dns_name }}"
-       groupname: running
-     
-    with_items: "{{ vm.instances }}"
-
-  - name: waiting for server to come back
-    local_action: wait_for host={{ inventory_hostname }} port=22 delay=9 timeout=900 state=started
-
-- hosts: running
-  become: yes
-  remote_user: ec2-user
-  tasks:
-
-  - name: Running apt-get commands
-    apt: 
-       update_cache: yes
-       cache_valid_time: 3600
-
-  - name: Dist upgrade
-    apt: 
-       upgrade: dist
-
