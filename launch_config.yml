@@ -1,0 +1,15 @@
+---
+- name: Creation ec2 lauch config
+  hosts: localhost
+  connection: local
+  tasks:
+
+   - name: ec2 lc create
+     ec2_lc:
+      name: "{{ launch_config }}"
+      image_id: ami-0fc20dd1da406780b
+      instance_type: t2.micro
+      key_name: key
+      security_group: ['default']
+      region: us-east-2
+      user_data_path: user_data
