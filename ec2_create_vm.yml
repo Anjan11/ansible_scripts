@@ -9,7 +9,7 @@
 #       instance_type: a1.medium
        instance_type: t2.micro
        key_name: key
-       image: ami-0fc20dd1da406780b
+       image: ami-08cec7c429219e339
        region: us-east-2
        group: default
        vpc_subnet_id: subnet-a0a052cb
