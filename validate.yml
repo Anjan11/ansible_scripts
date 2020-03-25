@@ -2,18 +2,18 @@
   hosts: localhost
   connection: local
   tasks:
-   
+
     - name: gather facts
-      ec2_elb_facts:
+      ec2_elb_info:
         region: us-east-2
-        names: apache_lb
+        names: apacheelb
       register: elb_facts
 
     - debug:
         msg: "{{ elb_facts.elbs.0.dns_name }}"
-     
-    - uri: 
+
+    - uri:
        url: http://{{ elb_facts.elbs.0.dns_name }}
        return_content: yes
       register: this
-      failed_when: "Hello working" not in this.content
+      failed_when: '"Hello working" not in this.content'
