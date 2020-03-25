@@ -1,28 +1,27 @@
-- name: Creating ELB
+---
+- name: Creating ELB check
   hosts: localhost
   connection: local
   tasks:
-   
-   - name: creating elb
+   - name: Creating ELB
      ec2_elb_lb:
-     name: apache_lb
-     state: present
-     region: us-east-2
-     cross_az_load_balancing: yes
-     listeners:
+      name: apacheelb
+      state: present
+      region: us-east-2
+      zones: us-east-2c
+      cross_az_load_balancing: yes
+      security_group_ids: sg-44211522
+      listeners:
       - protocol: http
         load_balancer_port: 80
         instance_port: 80
       tags:
-       name: my_elb
-      security_group_ids: sg-44211522
-      zones: us-east-2c
-      health_check: 
+        Name: my_elb
+      health_check:
         ping_protocol: http
         ping_port: 80
         ping_path: "/index.html"
-        reponse_timeout: 5
+        response_timeout: 5
         interval: 30
         unhealthy_threshold: 2
         healthy_threshold: 2
- 
