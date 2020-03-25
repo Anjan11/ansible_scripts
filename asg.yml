@@ -6,14 +6,14 @@
        ec2_asg:
           name: my_web_asg
           region: us-east-2
-          load_balancers: apache_lb
+          load_balancers: apacheelb
           availability_zones: ['us-east-2c']
           launch_config_name: "{{ launch_config }}"
           min_size: 1
           max_size: 1
           desired_capacity: 1
-          replace_all-instances: yes
-          vpc_zone_identifier: ['sg-44211522']
-          tags: 
+          replace_all_instances: yes
+          vpc_zone_identifier: ['subnet-1f50c053']
+          tags:
             - type: my_web_server
           wait_for_instances: yes
